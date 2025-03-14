@@ -2,6 +2,7 @@
   "name": "telegram-mini-app-video",
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://piworkacc.github.io/mini-app/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
