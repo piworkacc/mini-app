@@ -1,48 +1,20 @@
-import { useEffect, useRef, useState} from 'react'
-import './App.css'
+import { useState } from "react";
+import MathField from "./components/MathField";
 
-import WebApp from '@twa-dev/sdk'
-
-function App() {
-    const [count, setCount] = useState(0)
-    const videoRef = useRef<HTMLVideoElement | null>(null);
-
-    useEffect(() => {
-        getVideo();
-    }, [videoRef]);
-
-    const getVideo = () => {
-        navigator.mediaDevices
-            .getUserMedia({ video: { width: 300 } })
-            .then(stream => {
-                let video = videoRef.current;
-                if(video) {
-                    video.srcObject = stream;
-                    video.play();
-                }
-            })
-            .catch(err => {
-                console.error("error:", err);
-            });
-    };
+export default function App() {
+    const [value, setValue] = useState<string>("");
 
     return (
-        <>
-            <video ref={videoRef} />
-            <h1>TWA + Vite + React</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-            </div>
-            {/*  */}
-            <div className="card">
-                <button onClick={() => WebApp.showAlert(`Hello World! Current count is ${count}`)}>
-                    Show Alert
-                </button>
-            </div>
-        </>
-    )
-}
 
-export default App
+            <MathField
+                latex={value}
+                autoOpenKeyboard
+                hasKeyboardButton={false}
+                placeholder="\text{Формула...}"
+                onInput={(e) => {
+                    setValue(e);
+                }}
+            />
+
+    );
+}

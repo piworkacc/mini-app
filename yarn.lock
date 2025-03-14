@@ -234,6 +234,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cortex-js/compute-engine@npm:0.27.0":
+  version: 0.27.0
+  resolution: "@cortex-js/compute-engine@npm:0.27.0"
+  dependencies:
+    complex-esm: "npm:^2.1.1-esm1"
+    decimal.js: "npm:^10.4.3"
+  checksum: 10c0/7942cd499eda1f389b518c1bbf96a4fe8d817629a3d5b03108fbe906290e9585073eca30b57b09dc7473cd37540237d47d5f42ad9f6dcf096010691e5fa4cecf
+  languageName: node
+  linkType: hard
+
 "@esbuild/aix-ppc64@npm:0.21.5":
   version: 0.21.5
   resolution: "@esbuild/aix-ppc64@npm:0.21.5"
@@ -1194,6 +1204,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"complex-esm@npm:^2.1.1-esm1":
+  version: 2.1.1-esm1
+  resolution: "complex-esm@npm:2.1.1-esm1"
+  checksum: 10c0/65725286ea8513785333a9d710ee5fafb6e32a24bc12648ba6ba62ab3c8cc380d79d7a8f542159c7fb5134364eb294e5446dd5e6b83aaffdb4dfeb27a227bc89
+  languageName: node
+  linkType: hard
+
 "concat-map@npm:0.0.1":
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
@@ -1235,6 +1252,13 @@ __metadata:
     supports-color:
       optional: true
   checksum: 10c0/3293416bff072389c101697d4611c402a6bacd1900ac20c0492f61a9cdd6b3b29750fc7f5e299f8058469ef60ff8fb79b86395a30374fbd2490113c1c7112285
+  languageName: node
+  linkType: hard
+
+"decimal.js@npm:^10.4.3":
+  version: 10.5.0
+  resolution: "decimal.js@npm:10.5.0"
+  checksum: 10c0/785c35279df32762143914668df35948920b6c1c259b933e0519a69b7003fc0a5ed2a766b1e1dda02574450c566b21738a45f15e274b47c2ac02072c0d1f3ac3
   languageName: node
   linkType: hard
 
@@ -2080,6 +2104,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mathlive@npm:^0.104.0":
+  version: 0.104.0
+  resolution: "mathlive@npm:0.104.0"
+  dependencies:
+    "@cortex-js/compute-engine": "npm:0.27.0"
+  checksum: 10c0/c2114640f6b7d63cc655dadadd5695ede19fc12a07e75df669aa947a9e2daa07cdfe67f3c832c4813ebaa3ef241d03f1cf790ad57524e6f2efd0f1d4d1bf53a0
+  languageName: node
+  linkType: hard
+
 "merge2@npm:^1.3.0, merge2@npm:^1.4.1":
   version: 1.4.1
   resolution: "merge2@npm:1.4.1"
@@ -2757,6 +2790,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:5.1.0-rc.0"
     eslint-plugin-react-refresh: "npm:0.4.9"
     globals: "npm:15.9.0"
+    mathlive: "npm:^0.104.0"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     telegram-webapps: "npm:7.8.0"
