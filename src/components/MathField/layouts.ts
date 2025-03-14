@@ -1,4 +1,4 @@
-import { VirtualKeyboardKeycap } from 'mathlive/dist/types/virtual-keyboard';
+import {VirtualKeyboardKeycap} from "../../../node_modules/mathlive/dist/types/virtual-keyboard";
 
 export const mobileLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
   ['[hide-keyboard]', { label: '[separator]', width: 1 }, '[left]', '[right]', '[backspace]'],
