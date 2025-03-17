@@ -7,13 +7,6 @@ import { mainButton, miniApp, useSignal } from "@telegram-apps/sdk-react";
 export function useMainButton(value: string) {
   const isMounted = useSignal(mainButton.isMounted);
 
-  mainButton.offClick(() => {
-    mainButton.setParams({
-      text: value,
-    });
-    miniApp.close();
-  });
-
   useEffect(() => {
     mainButton.mount();
 
@@ -23,12 +16,18 @@ export function useMainButton(value: string) {
         text: "Отправить",
         isEnabled: value.length > 0,
       });
+      mainButton.offClick(() => {
+        mainButton.setParams({
+          text: value,
+        });
+        miniApp.close();
+      });
     }
 
     return () => {
       mainButton.unmount();
     };
-  }, [isMounted, value.length]);
+  }, [isMounted, value, value.length]);
 
   return null;
 }
