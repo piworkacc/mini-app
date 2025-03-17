@@ -44,7 +44,7 @@ jobs:
         run: npm run build
 
       - name: Disable Jekyll
-        run: touch docs/.nojekyll
+        run: touch ./dist/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
