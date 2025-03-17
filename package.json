@@ -2,11 +2,9 @@
   "name": "telegram-mini-app-video",
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://piworkacc.github.io/mini-app",
+  "homepage": "https://piworkacc.github.io/mini-app/",
   "scripts": {
     "dev": "vite",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview --host"
@@ -15,7 +13,6 @@
     "@twa-dev/sdk": "latest",
     "@twa-dev/types": "latest",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
-    "gh-pages": "^6.3.0",
     "mathlive": "^0.104.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
