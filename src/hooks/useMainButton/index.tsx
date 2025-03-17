@@ -2,7 +2,12 @@
  * Component which controls the Main Button visibility.
  */
 import { useEffect } from "react";
-import { mainButton, miniApp, useSignal } from "@telegram-apps/sdk-react";
+import {
+  mainButton,
+  miniApp,
+  popup,
+  useSignal,
+} from "@telegram-apps/sdk-react";
 
 export function useMainButton(value: string) {
   const isMounted = useSignal(mainButton.isMounted);
@@ -16,6 +21,12 @@ export function useMainButton(value: string) {
         text: "Отправить",
         isEnabled: value.length > 0,
       });
+
+      popup.open({
+        title: value,
+        message: value,
+      });
+
       mainButton.offClick(() => {
         mainButton.setParams({
           text: value,
