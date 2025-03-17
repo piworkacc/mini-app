@@ -22,7 +22,7 @@ export default function App() {
                     setValue(e);
                 }}
             />
-            <MainButton text="Готово" onClick={handlerSendData} progress={true} hasShineEffect={true} />
+            <MainButton text="Готово" onClick={handlerSendData}  />
         </>
     );
 }
