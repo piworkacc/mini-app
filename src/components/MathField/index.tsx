@@ -1,34 +1,34 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
-import { MathfieldElement } from 'mathlive';
-import { useResize } from '../../../src/hooks/useResize';
+import { FC, useCallback, useEffect, useMemo, useRef } from "react";
+import { MathfieldElement } from "mathlive";
+import { useResize } from "@hooks/useResize";
 
-import {  mobileLayout } from './layouts';
-import { ControlledProps } from './interfaces';
+import { mobileLayout } from "./layouts";
+import { ControlledProps } from "./interfaces";
 
 type Props = ControlledProps;
 
 const MathField: FC<Props> = ({
-                                onInput,
-                                latex,
-                                placeholder = "\text{Формула...}",
-                                hasKeyboardButton = true,
-                                autoOpenKeyboard = true,
-                              }) => {
+  onInput,
+  latex,
+  placeholder = "\text{Формула...}",
+  hasKeyboardButton = true,
+  autoOpenKeyboard = true,
+}) => {
   const { isMobileView } = useResize();
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const mf = useMemo(() => {
     const mathField = new MathfieldElement();
-    mathField.setAttribute('placeholder', placeholder);
+    mathField.setAttribute("placeholder", placeholder);
 
     return mathField;
   }, [placeholder]);
 
   const onInputCallback = useCallback(
-      (event: Event) => {
-        onInput((event.target as HTMLInputElement).value);
-      },
-      [onInput],
+    (event: Event) => {
+      onInput((event.target as HTMLInputElement).value);
+    },
+    [onInput],
   );
 
   const onFocusCallback = useCallback((e: FocusEvent) => {
@@ -37,30 +37,30 @@ const MathField: FC<Props> = ({
   }, []);
 
   const onMountCallback = useCallback(() => {
-    window.mathVirtualKeyboard.layouts = [{ rows:  mobileLayout  }];
+    window.mathVirtualKeyboard.layouts = [{ rows: mobileLayout }];
     mf.menuItems = [];
   }, [isMobileView, mf]);
 
   useEffect(() => {
-    mf.addEventListener('input', onInputCallback);
+    mf.addEventListener("input", onInputCallback);
 
-    return () => mf.removeEventListener('input', onInputCallback);
+    return () => mf.removeEventListener("input", onInputCallback);
   }, [mf, onInputCallback]);
 
   useEffect(() => {
-    mf.addEventListener('mount', onMountCallback);
+    mf.addEventListener("mount", onMountCallback);
 
-    return () => mf.removeEventListener('mount', onMountCallback);
+    return () => mf.removeEventListener("mount", onMountCallback);
   }, [mf, onMountCallback]);
 
   useEffect(() => {
-    if (autoOpenKeyboard) mf.addEventListener('focusin', onFocusCallback);
+    if (autoOpenKeyboard) mf.addEventListener("focusin", onFocusCallback);
 
-    return () => mf.removeEventListener('focusout', onFocusCallback);
+    return () => mf.removeEventListener("focusout", onFocusCallback);
   }, [autoOpenKeyboard, mf, onFocusCallback]);
 
-  mf.style.setProperty('min-width', '100%');
-  mf.style.setProperty('width', '100%');
+  mf.style.setProperty("min-width", "100%");
+  mf.style.setProperty("width", "100%");
 
   useEffect(() => {
     if (mf && containerRef.current) {
@@ -75,9 +75,14 @@ const MathField: FC<Props> = ({
     };
   }, [mf]);
 
-  mf.value = latex || '';
+  mf.value = latex || "";
 
-  return <div className={`math-field ${hasKeyboardButton ? '' : 'withoutKeyboard'}`} ref={containerRef} />;
+  return (
+    <div
+      className={`math-field ${hasKeyboardButton ? "" : "withoutKeyboard"}`}
+      ref={containerRef}
+    />
+  );
 };
 
 export default MathField;

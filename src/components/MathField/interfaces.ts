@@ -1,4 +1,4 @@
-import type Mathlive from 'mathlive';
+import type Mathlive from "mathlive";
 
 export type BaseProps = {
   onInput: (value: string) => void;

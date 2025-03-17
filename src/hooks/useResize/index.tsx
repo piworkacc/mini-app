@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export enum Breakpoints {
   MOBILE = 360,
@@ -29,7 +29,8 @@ export const useResize = () => {
 
   const size = getSize(currentWidth);
   const isMobileView = size < Breakpoints.S_DESKTOP;
-  const isTabletView = size < Breakpoints.S_DESKTOP && size > Breakpoints.MOBILE;
+  const isTabletView =
+    size < Breakpoints.S_DESKTOP && size > Breakpoints.MOBILE;
   const isDesktopView = size >= Breakpoints.S_DESKTOP;
 
   useEffect(() => {
@@ -37,10 +38,10 @@ export const useResize = () => {
       setCurrentWidth((event.target as Window).innerWidth || 0);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

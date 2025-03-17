@@ -1,20 +1,20 @@
 body {
-    --keycap-height: 24px;
-    --keycap-width: 100px;
-    --keycap-max-width: 100%;
-    --keycap-font-size: 16px;
-    --keycap-shift-font-size: 9px;
-    --keycap-small-font-size: 9px;
-    --keycap-extra-small-font-size: 9px;
-    --keyboard-toolbar-font-size: 16px;
-    --keycap-gap: 1px;
+  --keycap-height: 24px;
+  --keycap-width: 100px;
+  --keycap-max-width: 100%;
+  --keycap-font-size: 16px;
+  --keycap-shift-font-size: 9px;
+  --keycap-small-font-size: 9px;
+  --keycap-extra-small-font-size: 9px;
+  --keyboard-toolbar-font-size: 16px;
+  --keycap-gap: 1px;
 }
 
 /* hide menu button */
 math-field::part(menu-toggle) {
-    display: none;
+  display: none;
 }
 
 .withoutKeyboard math-field::part(virtual-keyboard-toggle) {
-    display: none;
+  display: none;
 }

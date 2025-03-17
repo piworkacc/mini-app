@@ -10,8 +10,8 @@
     "preview": "vite preview --host"
   },
   "dependencies": {
-    "@twa-dev/sdk": "latest",
-    "@twa-dev/types": "^8.0.2",
+    "@telegram-apps/sdk-react": "^2.0.20",
+    "@telegram-apps/telegram-ui": "^2.1.8",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
     "mathlive": "^0.104.0",
     "react": "^18.3.1",
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@eslint/js": "9.9.0",
+    "@types/node": "^22.13.10",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@vitejs/plugin-react": "^4.3.4",
@@ -26,10 +27,12 @@
     "eslint-plugin-react-hooks": "5.1.0-rc.0",
     "eslint-plugin-react-refresh": "0.4.9",
     "globals": "15.9.0",
-    "telegram-webapps": "7.8.0",
+    "prettier": "3.5.3",
     "typescript": "5.5.3",
     "typescript-eslint": "8.0.1",
-    "vite": "^6.2.2"
+    "vite": "^6.2.2",
+    "vite-plugin-static-copy": "^2.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "packageManager": "yarn@4.4.1"
 }

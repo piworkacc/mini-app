@@ -1,28 +1,36 @@
-import {useCallback, useState} from "react";
-import MathField from "./components/MathField";
-import './App.css'
-import {MainButton} from "@twa-dev/sdk/react";
+import { useState } from "react";
+import { AppRoot, Button } from "@telegram-apps/telegram-ui";
+import {
+  useSignal,
+  useLaunchParams,
+  miniApp,
+  sendData,
+} from "@telegram-apps/sdk-react";
 
+import MathField from "./components/MathField";
+
+import "./App.css";
 
 export default function App() {
-    const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>("");
+  const lp = useLaunchParams();
+  const isDark = useSignal(miniApp.isDark);
 
-    const handlerSendData = useCallback(() => {
-        window.Telegram.WebApp.sendData(value);
-    }, [value]);
-
-    return (
-        <>
-            <MathField
-                latex={value}
-                autoOpenKeyboard
-                hasKeyboardButton={false}
-                placeholder="\text{Формула...}"
-                onInput={(e) => {
-                    setValue(e);
-                }}
-            />
-            <MainButton text="Готово" onClick={handlerSendData}  />
-        </>
-    );
+  return (
+    <AppRoot
+      appearance={isDark ? "dark" : "light"}
+      platform={["macos", "ios"].includes(lp.platform) ? "ios" : "base"}
+    >
+      <MathField
+        latex={value}
+        autoOpenKeyboard
+        hasKeyboardButton={false}
+        placeholder="\text{Формула...}"
+        onInput={(e) => {
+          setValue(e);
+        }}
+      />
+      <Button onClick={() => sendData(value)}>Готово</Button>
+    </AppRoot>
+  );
 }
