@@ -21,7 +21,7 @@ export function useMainButton(value: string) {
       mainButton.setParams({
         isVisible: true,
         text: "Отправить",
-        isEnabled: value.length > 0,
+        isEnabled: true,
       });
     }
 
