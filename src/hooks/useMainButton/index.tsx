@@ -28,7 +28,7 @@ export function useMainButton(value: string) {
     return () => {
       mainButton.unmount();
     };
-  }, [isMounted, value.length]);
+  }, [isMounted]);
 
   return null;
 }
