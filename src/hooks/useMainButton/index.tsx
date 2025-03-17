@@ -21,14 +21,14 @@ export function useMainButton(value: string) {
       mainButton.setParams({
         isVisible: true,
         text: "Отправить",
-        isEnabled: true,
+        isEnabled: value.length > 0,
       });
     }
 
     return () => {
       mainButton.unmount();
     };
-  }, [isMounted]);
+  }, [isMounted, value.length]);
 
   return null;
 }
