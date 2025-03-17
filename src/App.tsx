@@ -2,13 +2,13 @@ import {useCallback, useState} from "react";
 import MathField from "./components/MathField";
 import './App.css'
 import {MainButton} from "@twa-dev/sdk/react";
-import WebApp from "@twa-dev/sdk";
+
 
 export default function App() {
     const [value, setValue] = useState<string>("");
 
     const handlerSendData = useCallback(() => {
-        WebApp.sendData(value)
+        window.Telegram.WebApp.sendData(value);
     }, [value]);
 
     return (
