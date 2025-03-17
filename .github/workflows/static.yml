@@ -34,17 +34,17 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 21
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install deps
         run: npm ci
 
-      - name: Disable Jekyll
-        run: touch docs/.nojekyll
-
       - name: Build
         run: npm run build
+
+      - name: Disable Jekyll
+        run: touch docs/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
