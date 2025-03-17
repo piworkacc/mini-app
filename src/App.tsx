@@ -7,7 +7,7 @@ import WebApp from "@twa-dev/sdk";
 export default function App() {
     const [value, setValue] = useState<string>("");
 
-    const handlerSendData = useCallback((value: string) => {
+    const handlerSendData = useCallback(() => {
         WebApp.sendData(value)
     }, [value]);
 
@@ -22,7 +22,7 @@ export default function App() {
                     setValue(e);
                 }}
             />
-            <MainButton text="Submit" onClick={() => handlerSendData(value)} />
+            <MainButton text="Submit" onClick={handlerSendData} />
         </>
     );
 }
