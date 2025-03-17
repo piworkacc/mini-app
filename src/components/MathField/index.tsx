@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
 import { MathfieldElement } from 'mathlive';
 import { useResize } from '../../../src/hooks/useResize';
 
-import { desktopLayout, mobileLayout } from './layouts';
+import {  mobileLayout } from './layouts';
 import { ControlledProps } from './interfaces';
 
 type Props = ControlledProps;
@@ -10,7 +10,7 @@ type Props = ControlledProps;
 const MathField: FC<Props> = ({
                                 onInput,
                                 latex,
-                                placeholder = '\\text{Введите ответ...}',
+                                placeholder = "\text{Формула...}",
                                 hasKeyboardButton = true,
                                 autoOpenKeyboard = true,
                               }) => {
@@ -19,7 +19,7 @@ const MathField: FC<Props> = ({
 
   const mf = useMemo(() => {
     const mathField = new MathfieldElement();
-    mathField.setAttribute('placeholder', placeholder ?? '');
+    mathField.setAttribute('placeholder', placeholder);
 
     return mathField;
   }, [placeholder]);
@@ -37,7 +37,7 @@ const MathField: FC<Props> = ({
   }, []);
 
   const onMountCallback = useCallback(() => {
-    window.mathVirtualKeyboard.layouts = [{ rows: isMobileView ? mobileLayout : desktopLayout }];
+    window.mathVirtualKeyboard.layouts = [{ rows:  mobileLayout  }];
     mf.menuItems = [];
   }, [isMobileView, mf]);
 
@@ -54,17 +54,13 @@ const MathField: FC<Props> = ({
   }, [mf, onMountCallback]);
 
   useEffect(() => {
-    if (autoOpenKeyboard) mf.addEventListener('focus', onFocusCallback);
+    if (autoOpenKeyboard) mf.addEventListener('focusin', onFocusCallback);
 
-    return () => mf.removeEventListener('focus', onFocusCallback);
+    return () => mf.removeEventListener('focusout', onFocusCallback);
   }, [autoOpenKeyboard, mf, onFocusCallback]);
 
   mf.style.setProperty('min-width', '100%');
   mf.style.setProperty('width', '100%');
-
-  // Установка стиля placeholder через JavaScript
-  mf.style.setProperty('--placeholder-color', '#888'); // Цвет
-  mf.style.setProperty('--placeholder-italic', 'italic');
 
   useEffect(() => {
     if (mf && containerRef.current) {

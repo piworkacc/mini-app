@@ -8,22 +8,3 @@ export const mobileLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
   ['\\sqrt{#0}', '#@^{#?}', '1', '2', '3', '-'],
   ['(', ')', '0', ',', '=', '+'],
 ];
-
-export const desktopLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
-  [
-    '+',
-    '-',
-    '\\times',
-    '÷',
-    '\\frac{#@}{#?}',
-    '#@\\frac{#?}{#?}',
-    '=',
-    ',',
-    '(',
-    ')',
-    '\\sqrt{#0}',
-    '#@^{#?}',
-    '[hide-keyboard]',
-  ],
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '[backspace]'],
-];
