@@ -40,6 +40,9 @@ jobs:
       - name: Install deps
         run: npm ci
 
+      - name: Disable Jekyll
+        run: touch docs/.nojekyll
+
       - name: Build
         run: npm run build
 
