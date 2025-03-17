@@ -4,8 +4,7 @@
 import { useEffect } from "react";
 import {
   mainButton,
-  miniApp,
-  popup,
+  sendData,
   useSignal,
 } from "@telegram-apps/sdk-react";
 
@@ -18,20 +17,12 @@ export function useMainButton(value: string) {
     if (isMounted) {
       mainButton.setParams({
         isVisible: true,
-        text: "Отправить",
+        text: value ?? "Отправить",
         isEnabled: value.length > 0,
       });
 
-      popup.open({
-        title: value,
-        message: value,
-      });
-
       mainButton.offClick(() => {
-        mainButton.setParams({
-          text: value,
-        });
-        miniApp.close();
+        sendData(value);
       });
     }
 
