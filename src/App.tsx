@@ -1,20 +1,33 @@
-import { useState } from "react";
-import { AppRoot, Button } from "@telegram-apps/telegram-ui";
+import { useEffect, useState } from "react";
+import { AppRoot } from "@telegram-apps/telegram-ui";
 import {
   useSignal,
   useLaunchParams,
   miniApp,
-  sendData,
+  viewport,
 } from "@telegram-apps/sdk-react";
 
 import MathField from "./components/MathField";
 
 import "./App.css";
+import { useMainButton } from "@hooks/useMainButton";
 
 export default function App() {
   const [value, setValue] = useState<string>("");
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
+
+  useEffect(() => {
+    if (viewport.mount.isAvailable()) {
+      viewport.mount();
+      viewport.expand();
+    }
+    return () => {
+      viewport.unmount();
+    };
+  }, []);
+
+  useMainButton(value);
 
   return (
     <AppRoot
@@ -26,11 +39,8 @@ export default function App() {
         autoOpenKeyboard
         hasKeyboardButton={false}
         placeholder="\text{Формула...}"
-        onInput={(e) => {
-          setValue(e);
-        }}
+        onInput={setValue}
       />
-      <Button onClick={() => sendData(value)}>Готово</Button>
     </AppRoot>
   );
 }

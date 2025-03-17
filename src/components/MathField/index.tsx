@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react";
 import { MathfieldElement } from "mathlive";
-import { useResize } from "@hooks/useResize";
 
 import { mobileLayout } from "./layouts";
 import { ControlledProps } from "./interfaces";
@@ -14,7 +13,6 @@ const MathField: FC<Props> = ({
   hasKeyboardButton = true,
   autoOpenKeyboard = true,
 }) => {
-  const { isMobileView } = useResize();
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const mf = useMemo(() => {
@@ -39,7 +37,7 @@ const MathField: FC<Props> = ({
   const onMountCallback = useCallback(() => {
     window.mathVirtualKeyboard.layouts = [{ rows: mobileLayout }];
     mf.menuItems = [];
-  }, [isMobileView, mf]);
+  }, [mf]);
 
   useEffect(() => {
     mf.addEventListener("input", onInputCallback);
