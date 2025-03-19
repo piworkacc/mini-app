@@ -65,8 +65,10 @@ const MathField: FC<Props> = ({
       containerRef.current.appendChild(mf);
     }
 
-    window.MathfieldElement.soundsDirectory = null;
-    window.MathfieldElement.fontsDirectory = null;
+    window.MathfieldElement.soundsDirectory =
+      "/node_modules/mathlive/dist/sounds";
+    window.MathfieldElement.fontsDirectory =
+      "/node_modules/mathlive/dist/fonts";
 
     return () => {
       window.mathVirtualKeyboard.hide();
