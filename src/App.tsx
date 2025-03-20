@@ -14,15 +14,16 @@ import MathField from "./components/MathField";
 import "./App.css";
 export default function App() {
   const [value, setValue] = useState<string>("");
+
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
 
   const isMounted = useSignal(mainButton.isMounted);
 
   const handleOnMainButtonClick = useCallback(() => {
-    sendData(JSON.stringify({ message: value }));
+    sendData("fasdfasdfasdfasdf");
     miniApp.close();
-  }, [value]);
+  }, []);
 
   if (onMainButtonClick.isAvailable()) {
     onMainButtonClick(handleOnMainButtonClick);
