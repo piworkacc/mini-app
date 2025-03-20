@@ -1,31 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AppRoot } from "@telegram-apps/telegram-ui";
-import {
-  useSignal,
-  useLaunchParams,
-  miniApp,
-  viewport,
-} from "@telegram-apps/sdk-react";
+import { useSignal, useLaunchParams, miniApp } from "@telegram-apps/sdk-react";
 
 import MathField from "./components/MathField";
 
 import "./App.css";
-import { useMainButton } from "@hooks/useMainButton";
+import { useMainButton } from "./hooks/useMainButton";
 
 export default function App() {
   const [value, setValue] = useState<string>("");
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-
-  useEffect(() => {
-    if (viewport.mount.isAvailable()) {
-      viewport.mount();
-      viewport.expand();
-    }
-    return () => {
-      viewport.unmount();
-    };
-  }, []);
 
   useMainButton(value);
 

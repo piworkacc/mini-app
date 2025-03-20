@@ -9,7 +9,7 @@ type Props = ControlledProps;
 const MathField: FC<Props> = ({
   onInput,
   latex,
-  placeholder = "\text{Формула...}",
+  placeholder = "\text{Введите формулу...}",
   hasKeyboardButton = true,
   autoOpenKeyboard = true,
 }) => {
@@ -64,11 +64,6 @@ const MathField: FC<Props> = ({
     if (mf && containerRef.current) {
       containerRef.current.appendChild(mf);
     }
-
-    window.MathfieldElement.soundsDirectory =
-      "/node_modules/mathlive/dist/sounds";
-    window.MathfieldElement.fontsDirectory =
-      "/node_modules/mathlive/dist/fonts";
 
     return () => {
       window.mathVirtualKeyboard.hide();
