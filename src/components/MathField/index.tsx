@@ -1,15 +1,15 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react";
-import { MathfieldElement } from "mathlive";
+import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
+import { MathfieldElement } from 'mathlive';
 
-import { mobileLayout } from "./layouts";
-import { ControlledProps } from "./interfaces";
+import { mobileLayout } from './layouts';
+import { ControlledProps } from './interfaces';
 
 type Props = ControlledProps;
 
 const MathField: FC<Props> = ({
   onInput,
   latex,
-  placeholder = "\text{Введите формулу...}",
+  placeholder = '\text{Введите формулу...}',
   hasKeyboardButton = true,
   autoOpenKeyboard = true,
 }) => {
@@ -17,7 +17,7 @@ const MathField: FC<Props> = ({
 
   const mf = useMemo(() => {
     const mathField = new MathfieldElement();
-    mathField.setAttribute("placeholder", placeholder);
+    mathField.setAttribute('placeholder', placeholder);
 
     return mathField;
   }, [placeholder]);
@@ -40,27 +40,29 @@ const MathField: FC<Props> = ({
   }, [mf]);
 
   useEffect(() => {
-    mf.addEventListener("input", onInputCallback);
+    mf.addEventListener('input', onInputCallback);
 
-    return () => mf.removeEventListener("input", onInputCallback);
+    return () => mf.removeEventListener('input', onInputCallback);
   }, [mf, onInputCallback]);
 
   useEffect(() => {
-    mf.addEventListener("mount", onMountCallback);
+    mf.addEventListener('mount', onMountCallback);
 
-    return () => mf.removeEventListener("mount", onMountCallback);
+    return () => mf.removeEventListener('mount', onMountCallback);
   }, [mf, onMountCallback]);
 
   useEffect(() => {
-    if (autoOpenKeyboard) mf.addEventListener("focusin", onFocusCallback);
+    if (autoOpenKeyboard) mf.addEventListener('focusin', onFocusCallback);
 
-    return () => mf.removeEventListener("focusout", onFocusCallback);
+    return () => mf.removeEventListener('focusout', onFocusCallback);
   }, [autoOpenKeyboard, mf, onFocusCallback]);
 
-  mf.style.setProperty("min-width", "100%");
-  mf.style.setProperty("width", "100%");
+  mf.style.setProperty('min-width', '100%');
+  mf.style.setProperty('width', '100%');
 
   useEffect(() => {
+    window.mathVirtualKeyboard.show();
+
     if (mf && containerRef.current) {
       containerRef.current.appendChild(mf);
     }
@@ -70,14 +72,9 @@ const MathField: FC<Props> = ({
     };
   }, [mf]);
 
-  mf.value = latex || "";
+  mf.value = latex || '';
 
-  return (
-    <div
-      className={`math-field ${hasKeyboardButton ? "" : "withoutKeyboard"}`}
-      ref={containerRef}
-    />
-  );
+  return <div className={`math-field ${hasKeyboardButton ? '' : 'withoutKeyboard'}`} ref={containerRef} />;
 };
 
 export default MathField;
