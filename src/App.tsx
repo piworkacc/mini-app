@@ -21,9 +21,9 @@ export default function App() {
   const isMounted = useSignal(mainButton.isMounted);
 
   const handleOnMainButtonClick = useCallback(() => {
-    sendData("fasdfasdfasdfasdf");
+    sendData(value);
     miniApp.close();
-  }, []);
+  }, [value]);
 
   if (onMainButtonClick.isAvailable()) {
     onMainButtonClick(handleOnMainButtonClick);
