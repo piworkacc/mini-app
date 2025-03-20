@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AppRoot } from "@telegram-apps/telegram-ui";
 import {
   useSignal,
@@ -19,10 +19,10 @@ export default function App() {
 
   const isMounted = useSignal(mainButton.isMounted);
 
-  const handleOnMainButtonClick = () => {
+  const handleOnMainButtonClick = useCallback(() => {
     sendData(JSON.stringify({ message: value }));
     miniApp.close();
-  };
+  }, [value]);
 
   if (onMainButtonClick.isAvailable()) {
     onMainButtonClick(handleOnMainButtonClick);
@@ -54,7 +54,9 @@ export default function App() {
         autoOpenKeyboard
         hasKeyboardButton={false}
         placeholder="\text{Формула...}"
-        onInput={(val) => setValue(val)}
+        onInput={(inputLatex) => {
+          setValue(inputLatex);
+        }}
       />
     </AppRoot>
   );
