@@ -18,6 +18,7 @@ export default function App() {
   const isDark = useSignal(miniApp.isDark);
 
   const isMounted = useSignal(mainButton.isMounted);
+  const isVisible = useSignal(mainButton.isVisible);
 
   const handleOnMainButtonClick = useCallback(() => {
     sendData(JSON.stringify({ message: value }));
@@ -30,10 +31,13 @@ export default function App() {
     });
   }
 
+  // Включаем кнопку 1 раз
   useEffect(() => {
-    if (!isMounted) mainButton.mount();
+    mainButton.mount();
+  }, [value]);
 
-    if (isMounted) {
+  useEffect(() => {
+    if (isMounted && isVisible) {
       mainButton.setParams({
         isVisible: true,
         text: "Отправить",
@@ -44,7 +48,7 @@ export default function App() {
     return () => {
       mainButton.unmount();
     };
-  }, [isMounted, value.length]);
+  }, [isMounted, isVisible, value.length]);
 
   return (
     <AppRoot
