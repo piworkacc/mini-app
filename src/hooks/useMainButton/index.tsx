@@ -2,14 +2,22 @@
  * Component which controls the Main Button visibility.
  */
 import { useEffect } from "react";
-import { mainButton, sendData, useSignal } from "@telegram-apps/sdk-react";
+import {
+  mainButton,
+  sendData,
+  useSignal,
+  onMainButtonClick,
+} from "@telegram-apps/sdk-react";
 
 export function useMainButton(value: string) {
   const isMounted = useSignal(mainButton.isMounted);
 
-  const off = mainButton.onClick(() => {
-    sendData(value);
-  });
+  if (onMainButtonClick.isAvailable()) {
+    const off = onMainButtonClick(() => {
+      sendData(value);
+      off();
+    });
+  }
 
   useEffect(() => {
     mainButton.mount();
@@ -21,12 +29,10 @@ export function useMainButton(value: string) {
         isEnabled: value.length > 0,
       });
     }
-
     return () => {
-      off();
       mainButton.unmount();
     };
-  }, [isMounted, off, value, value.length]);
+  }, [isMounted, value.length]);
 
   return null;
 }
