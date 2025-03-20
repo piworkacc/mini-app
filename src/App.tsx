@@ -31,8 +31,6 @@ export default function App() {
   }
 
   useEffect(() => {
-    mainButton.mount();
-
     if (isMounted) {
       mainButton.setParams({
         isVisible: true,
