@@ -65,6 +65,7 @@ const MathField: FC<Props> = ({
 
     if (mf && containerRef.current) {
       containerRef.current.appendChild(mf);
+      mf.focus();
     }
 
     return () => {
