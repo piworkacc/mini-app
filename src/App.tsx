@@ -5,7 +5,6 @@ import {
   useLaunchParams,
   miniApp,
   mainButton,
-  onMainButtonClick,
   sendData,
 } from "@telegram-apps/sdk-react";
 
@@ -21,13 +20,9 @@ export default function App() {
   const isMounted = useSignal(mainButton.isMounted);
 
   const handleOnMainButtonClick = useCallback(() => {
-    sendData(JSON.stringify(value));
+    sendData(JSON.stringify({ message: value }));
     miniApp.close();
   }, [value]);
-
-  if (onMainButtonClick.isAvailable()) {
-    onMainButtonClick(handleOnMainButtonClick);
-  }
 
   useEffect(() => {
     mainButton.mount();
@@ -42,8 +37,10 @@ export default function App() {
         isVisible: true,
         text: "Отправить",
       });
+
+      mainButton.onClick(handleOnMainButtonClick);
     }
-  }, [isMounted]);
+  }, [handleOnMainButtonClick, isMounted]);
 
   return (
     <AppRoot
