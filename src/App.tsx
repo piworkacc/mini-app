@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import WebApp from '@twa-dev/sdk';
 import { MainButton } from '@twa-dev/sdk/react';
 
@@ -12,6 +12,10 @@ function App() {
     WebApp.sendData(JSON.stringify(latex));
     WebApp.close();
   }, [latex]);
+
+  useEffect(() => {
+    WebApp.expand();
+  }, []);
 
   return (
     <>
