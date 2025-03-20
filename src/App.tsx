@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { AppRoot } from "@telegram-apps/telegram-ui";
+import { useCallback, useEffect, useState } from "react";
+import { AppRoot, Button } from "@telegram-apps/telegram-ui";
 import {
   useSignal,
   useLaunchParams,
@@ -12,12 +12,17 @@ import MathField from "./components/MathField";
 
 import "./App.css";
 export default function App() {
-  const [value, setValue] = useState<string>("");
+  const [latex, setValue] = useState<string>("");
 
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
 
   const isMounted = useSignal(mainButton.isMounted);
+
+  const handleOnMainButtonClick = useCallback(() => {
+    sendData(JSON.stringify({ message: latex }));
+    miniApp.close();
+  }, [latex]);
 
   useEffect(() => {
     mainButton.mount();
@@ -28,19 +33,14 @@ export default function App() {
 
   useEffect(() => {
     if (isMounted) {
-      const handleOnMainButtonClick = () => {
-        sendData(JSON.stringify({ message: value }));
-        miniApp.close();
-      };
-
       mainButton.setParams({
         isVisible: true,
         text: "Отправить",
+        isEnabled: latex.length > 0,
       });
-
       mainButton.onClick(handleOnMainButtonClick);
     }
-  }, [isMounted, value]);
+  }, [handleOnMainButtonClick, isMounted, latex]);
 
   return (
     <AppRoot
@@ -48,7 +48,7 @@ export default function App() {
       platform={["macos", "ios"].includes(lp.platform) ? "ios" : "base"}
     >
       <MathField
-        latex={value}
+        latex={latex}
         autoOpenKeyboard
         hasKeyboardButton={false}
         placeholder="\text{Формула...}"
@@ -56,6 +56,7 @@ export default function App() {
           setValue(inputLatex);
         }}
       />
+      <Button onClick={handleOnMainButtonClick}>Нажатие на кнопку</Button>
     </AppRoot>
   );
 }
