@@ -26,12 +26,7 @@ export default function App() {
 
   useEffect(() => {
     mainButton.mount();
-    return () => {
-      mainButton.unmount();
-    };
-  }, []);
 
-  useEffect(() => {
     if (isMounted) {
       mainButton.setParams({
         isVisible: true,
@@ -40,6 +35,10 @@ export default function App() {
       });
       mainButton.onClick(handleOnMainButtonClick);
     }
+
+    return () => {
+      mainButton.unmount();
+    };
   }, [handleOnMainButtonClick, isMounted, latex]);
 
   return (
