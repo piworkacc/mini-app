@@ -17,8 +17,6 @@ export default function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
 
-  mainButton.mount();
-
   const isMounted = useSignal(mainButton.isMounted);
 
   const handleOnMainButtonClick = useCallback(() => {
@@ -33,6 +31,8 @@ export default function App() {
   }
 
   useEffect(() => {
+    if (!isMounted) mainButton.mount();
+
     if (isMounted) {
       mainButton.setParams({
         isVisible: true,
