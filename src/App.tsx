@@ -1,51 +1,15 @@
-import { useCallback, useEffect, useState } from "react";
-import { AppRoot, Button } from "@telegram-apps/telegram-ui";
-import {
-  useSignal,
-  useLaunchParams,
-  miniApp,
-  mainButton,
-  sendData,
-} from "@telegram-apps/sdk-react";
+import { useState } from 'react';
+import WebApp from '@twa-dev/sdk';
+import { MainButton } from '@twa-dev/sdk/react';
 
-import MathField from "./components/MathField";
+import MathField from './components/MathField';
+import './App.css';
 
-import "./App.css";
-export default function App() {
-  const [latex, setValue] = useState<string>("");
-
-  const lp = useLaunchParams();
-  const isDark = useSignal(miniApp.isDark);
-
-  const isMounted = useSignal(mainButton.isMounted);
-
-  const handleOnMainButtonClick = useCallback(() => {
-    sendData(JSON.stringify({ message: latex }));
-    miniApp.close();
-  }, [latex]);
-
-  useEffect(() => {
-    mainButton.mount();
-
-    if (isMounted) {
-      mainButton.setParams({
-        isVisible: true,
-        text: "Отправить",
-        isEnabled: latex.length > 0,
-      });
-      mainButton.onClick(handleOnMainButtonClick);
-    }
-
-    return () => {
-      mainButton.unmount();
-    };
-  }, [handleOnMainButtonClick, isMounted, latex]);
+function App() {
+  const [latex, setValue] = useState<string | null>(null);
 
   return (
-    <AppRoot
-      appearance={isDark ? "dark" : "light"}
-      platform={["macos", "ios"].includes(lp.platform) ? "ios" : "base"}
-    >
+    <>
       <MathField
         latex={latex}
         autoOpenKeyboard
@@ -55,7 +19,9 @@ export default function App() {
           setValue(inputLatex);
         }}
       />
-      <Button onClick={handleOnMainButtonClick}>Нажатие на кнопку</Button>
-    </AppRoot>
+      <MainButton text="Отправить" onClick={() => WebApp.close()} color="#fff" textColor="#000" hasShineEffect />
+    </>
   );
 }
+
+export default App;

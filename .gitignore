@@ -28,3 +28,5 @@ dist-ssr
 api_links.txt
 
 tsconfig.node.tsbuildinfo
+
+.yarn/install-state.gz

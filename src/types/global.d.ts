@@ -1,4 +1,5 @@
 import { MathfieldElement } from "mathlive";
+import { Telegram } from "@twa-dev/types";
 
 declare global {
   namespace React.JSX {
@@ -8,5 +9,11 @@ declare global {
         MathfieldElement
       >;
     }
+  }
+}
+
+declare global {
+  interface Window {
+    Telegram: Telegram;
   }
 }

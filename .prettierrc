@@ -1,34 +1,7 @@
 {
-  "arrowParens": "always",
-  "bracketSameLine": false,
+  "printWidth": 120,
+  "tabWidth": 2,
+  "singleQuote": true,
   "bracketSpacing": true,
-  "cursorOffset": -1,
-  "editorconfig": false,
-  "embeddedLanguageFormatting": "auto",
-  "endOfLine": "lf",
-  "filepath": "",
-  "htmlWhitespaceSensitivity": "css",
-  "insertPragma": false,
-  "jsxSingleQuote": false,
-  "overrides": [
-    {
-      "files": ["*.ts"],
-      "options": {
-        "parser": "typescript"
-      }
-    },
-    {
-      "files": ["*.tsx"],
-      "options": {
-        "parser": "typescript",
-        "jsxSingleQuote": false
-      }
-    },
-    {
-      "files": ["*.json"],
-      "options": {
-        "parser": "json"
-      }
-    }
-  ]
+  "semi": true
 }
