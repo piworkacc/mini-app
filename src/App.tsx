@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import WebApp from '@twa-dev/sdk';
 import { MainButton } from '@twa-dev/sdk/react';
 
@@ -7,6 +7,11 @@ import './App.css';
 
 function App() {
   const [latex, setValue] = useState<string | null>(null);
+
+  const handleOnClick = useCallback(() => {
+    WebApp.sendData(JSON.stringify(latex));
+    WebApp.close();
+  }, [latex]);
 
   return (
     <>
@@ -19,7 +24,7 @@ function App() {
           setValue(inputLatex);
         }}
       />
-      <MainButton text="Отправить" onClick={() => WebApp.close()} color="#fff" textColor="#000" hasShineEffect />
+      <MainButton text="Отправить" onClick={handleOnClick} disabled={!latex} />
     </>
   );
 }
