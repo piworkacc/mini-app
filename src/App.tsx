@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AppRoot } from "@telegram-apps/telegram-ui";
 import {
   useSignal,
   useLaunchParams,
   miniApp,
   mainButton,
-  offMainButtonClick,
+  onMainButtonClick,
   sendData,
 } from "@telegram-apps/sdk-react";
 
@@ -19,13 +19,10 @@ export default function App() {
 
   const isMounted = useSignal(mainButton.isMounted);
 
-  const handleOnMainButtonClick = useCallback(() => {
-    sendData(JSON.stringify({ message: value }));
-  }, [value]);
-
-  if (offMainButtonClick.isAvailable()) {
-    offMainButtonClick(() => {
-      handleOnMainButtonClick();
+  if (onMainButtonClick.isAvailable()) {
+    const off = onMainButtonClick(() => {
+      sendData(JSON.stringify({ message: value }));
+      off();
     });
   }
 
