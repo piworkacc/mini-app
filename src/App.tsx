@@ -34,6 +34,9 @@ export default function App() {
   // Включаем кнопку 1 раз
   useEffect(() => {
     mainButton.mount();
+    return () => {
+      mainButton.unmount();
+    };
   }, []);
 
   useEffect(() => {
@@ -44,10 +47,6 @@ export default function App() {
         isEnabled: value.length > 0,
       });
     }
-
-    return () => {
-      mainButton.unmount();
-    };
   }, [isMounted, isVisible, value.length]);
 
   return (
