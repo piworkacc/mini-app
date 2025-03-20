@@ -20,9 +20,7 @@ function App() {
         autoOpenKeyboard
         hasKeyboardButton={false}
         placeholder="\text{Формула...}"
-        onInput={(inputLatex) => {
-          setValue(inputLatex);
-        }}
+        onInput={setValue}
       />
       <MainButton text="Отправить" onClick={handleOnClick} disabled={!latex} />
     </>
