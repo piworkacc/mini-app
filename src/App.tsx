@@ -5,7 +5,7 @@ import {
   useLaunchParams,
   miniApp,
   mainButton,
-  onMainButtonClick,
+  offMainButtonClick,
   sendData,
 } from "@telegram-apps/sdk-react";
 
@@ -23,10 +23,9 @@ export default function App() {
     sendData(JSON.stringify({ message: value }));
   }, [value]);
 
-  if (onMainButtonClick.isAvailable()) {
-    const off = onMainButtonClick(() => {
+  if (offMainButtonClick.isAvailable()) {
+    offMainButtonClick(() => {
       handleOnMainButtonClick();
-      off();
     });
   }
 
