@@ -21,7 +21,7 @@ export default function App() {
 
   if (onMainButtonClick.isAvailable()) {
     const off = onMainButtonClick(() => {
-      sendData(value);
+      sendData(JSON.stringify({ message: value }));
       off();
     });
   }
