@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AppRoot } from "@telegram-apps/telegram-ui";
 import {
   useSignal,
@@ -19,11 +19,6 @@ export default function App() {
 
   const isMounted = useSignal(mainButton.isMounted);
 
-  const handleOnMainButtonClick = useCallback(() => {
-    sendData(JSON.stringify({ message: value }));
-    miniApp.close();
-  }, [value]);
-
   useEffect(() => {
     mainButton.mount();
     return () => {
@@ -33,6 +28,11 @@ export default function App() {
 
   useEffect(() => {
     if (isMounted) {
+      const handleOnMainButtonClick = () => {
+        sendData(JSON.stringify({ message: value }));
+        miniApp.close();
+      };
+
       mainButton.setParams({
         isVisible: true,
         text: "Отправить",
@@ -40,7 +40,7 @@ export default function App() {
 
       mainButton.onClick(handleOnMainButtonClick);
     }
-  }, [handleOnMainButtonClick, isMounted]);
+  }, [isMounted, value]);
 
   return (
     <AppRoot
