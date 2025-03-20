@@ -34,7 +34,7 @@ export default function App() {
   // Включаем кнопку 1 раз
   useEffect(() => {
     mainButton.mount();
-  }, [value]);
+  }, []);
 
   useEffect(() => {
     if (isMounted && isVisible) {
