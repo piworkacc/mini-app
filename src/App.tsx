@@ -10,6 +10,7 @@ function App() {
 
   return (
     <>
+      <p>Ввод формулы:</p>
       <MathField
         latex={latex}
         autoOpenKeyboard
