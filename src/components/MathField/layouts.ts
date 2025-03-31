@@ -2,8 +2,9 @@ import { VirtualKeyboardKeycap } from "mathlive";
 
 export const mobileLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
   [
+    "[undo]",
+    "[redo]",
     { label: "[separator]", width: 0.5 },
-    { label: "[separator]", width: 2 },
     { label: "[separator]", width: 2 },
     "[backspace]",
   ],
