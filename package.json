@@ -12,7 +12,7 @@
   "dependencies": {
     "@twa-dev/sdk": "^8.0.1",
     "@vitejs/plugin-basic-ssl": "^1.2.0",
-    "mathlive": "^0.104.0",
+    "mathlive": "^0.105.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

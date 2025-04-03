@@ -2037,12 +2037,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mathlive@npm:^0.104.0":
-  version: 0.104.1
-  resolution: "mathlive@npm:0.104.1"
+"mathlive@npm:^0.105.0":
+  version: 0.105.0
+  resolution: "mathlive@npm:0.105.0"
   dependencies:
     "@cortex-js/compute-engine": "npm:0.28.0"
-  checksum: 10c0/0747b1a17e5ec889ead259920308bdf9b69d6f54c4c87505247170dc4e905f6596f72e0fbbe246d9657921e78e10c0e97bd9a492254faf88b6327160e7d33918
+  checksum: 10c0/0fcfe7346592c6c02c42a2abd5ff9e6eddaef5c539e569eee4d7414baaed492f095458e5cf0637af1fbed49dd8af22517eab58ab91d3f0daa3d3ef3f3dfe5e68
   languageName: node
   linkType: hard
 
@@ -2718,7 +2718,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^5.1.0"
     eslint-plugin-react-refresh: "npm:^0.4.16"
     globals: "npm:^15.14.0"
-    mathlive: "npm:^0.104.0"
+    mathlive: "npm:^0.105.0"
     prettier: "npm:^3.5.3"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
