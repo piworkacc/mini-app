@@ -2,10 +2,10 @@ import { VirtualKeyboardKeycap } from 'mathlive';
 
 const navigationRows: (Partial<VirtualKeyboardKeycap> | string)[][] = [
   [
-    { label: '123', command: 'switchKeyboardLayer("num")' },
-    { label: 'f(x)', command: 'switchKeyboardLayer("func")' },
-    { label: 'sin', command: 'switchKeyboardLayer("trigono")' },
-    { label: 'abc', command: 'switchKeyboardLayer("aplphabet")' },
+    { label: '123', class: 'MLK__tex-math MLK__tex-medium', command: 'switchKeyboardLayer("num")' },
+    { label: 'f(x)', class: 'MLK__tex-math MLK__tex-medium', command: 'switchKeyboardLayer("func")' },
+    { label: 'sin', class: 'MLK__tex-math MLK__tex-medium', command: 'switchKeyboardLayer("trigono")' },
+    { label: 'abc', class: 'MLK__tex-math MLK__tex-medium', command: 'switchKeyboardLayer("aplphabet")' },
     { label: '[separator]', width: 1 },
     '[left]',
     '[right]',

@@ -17,3 +17,7 @@ math-field::part(menu-toggle) {
 .withoutKeyboard math-field::part(virtual-keyboard-toggle) {
   display: none;
 }
+
+.MLK__tex-medium {
+  font-size: 16px !important;
+}
