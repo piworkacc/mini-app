@@ -40,12 +40,12 @@ export const trigonometryLayout: (Partial<VirtualKeyboardKeycap> | string)[][] =
   ["\\ang{#?}{#?}'{#?}''", "\\sinh", "\\cosh", "\\tanh", "\\coth"],
 ];
 
-// export const functionsLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
-//   [{latex: "\\left\\lvert {#?} \\right\\rvert"}, "f(x)", "\\log_{10}{#?}", "\\tan(#?)", "\\ctg(#?)"],
-//   ["\\operatorname{\\abs}(#?)", "\\mod", "\\arccos(#?)", "\\arctan(#?)", {latex: "\\arcctg(#?)"}],
-//   ["\\ang{#?}{#?}'", "\\sec(#?)", "\\csc(#?)", "\\arcsec(#?)", "\\arccsc(#?)"],
-//   ["\\ang{#?}{#?}'{#?}''", "\\sinh", "\\cosh", "\\tanh", "\\coth"],
-// ];
+export const functionsLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
+  [{latex: "\\left\\lvert {#?} \\right\\rvert"}, "f(x)", "\\log_{10}{#?}"],
+  ["{#@}_{#?}", "f(x,y)", "\\log_{2}{#?}"],
+  ["e", "{#?}({#?})", "\\log_{#?}{#?}"],
+  ["\\exp", "{#?}({#?},{#?})", "\\ln{#?}"],
+];
 
 export const alphabeticLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
   ["a", "b", "c", "d", "e", "f", "g", "h"],

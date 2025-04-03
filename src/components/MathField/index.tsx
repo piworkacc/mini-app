@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
 import { MathfieldElement } from 'mathlive';
 
-import { alphabeticLayout, numericLayout, trigonometryLayout } from './layouts';
+import { alphabeticLayout, functionsLayout, numericLayout, trigonometryLayout } from './layouts';
 import { ControlledProps } from './interfaces';
 
 type Props = ControlledProps;
@@ -43,7 +43,7 @@ const MathField: FC<Props> = ({
   const onMountCallback = useCallback(() => {
     window.mathVirtualKeyboard.layouts = [
       { rows: numericLayout, label: '123', labelClass: 'MLK__tex-math' },
-      // { rows: functionsLayout, label: 'f(x)', labelClass: 'MLK__tex-math' },
+      { rows: functionsLayout, label: 'f(x)', labelClass: 'MLK__tex-math' },
       { rows: trigonometryLayout, label: 'sin', labelClass: 'MLK__tex-math' },
       { rows: alphabeticLayout, label: 'abc', labelClass: 'MLK__tex-math' },
     ];
