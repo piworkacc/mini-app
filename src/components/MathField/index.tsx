@@ -78,6 +78,7 @@ const MathField: FC<Props> = ({
   mf.style.setProperty('width', '100%');
 
   useEffect(() => {
+    window.mathVirtualKeyboard.targetOrigin="*";
     window.mathVirtualKeyboard.show();
 
     if (mf && containerRef.current) {
