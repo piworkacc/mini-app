@@ -35,7 +35,9 @@ const MathField: FC<Props> = ({
   }, []);
 
   const onBlurCallback = useCallback(() => {
-    requestAnimationFrame(() => mf.focus());
+    requestAnimationFrame(() => {
+      mf.focus();
+    });
   }, [mf]);
 
   const onMountCallback = useCallback(() => {
@@ -79,7 +81,6 @@ const MathField: FC<Props> = ({
     window.mathVirtualKeyboard.show();
 
     if (mf && containerRef.current) {
-      console.log("APPEND")
       containerRef.current.appendChild(mf);
       mf.focus();
     }
