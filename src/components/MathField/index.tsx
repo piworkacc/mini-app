@@ -13,7 +13,6 @@ const MathField: FC<Props> = ({
   hasKeyboardButton = true,
   autoOpenKeyboard = true,
 }) => {
-  console.log("RENDER MathField")
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const mf = useMemo(() => {
@@ -77,10 +76,10 @@ const MathField: FC<Props> = ({
   mf.style.setProperty('width', '100%');
 
   useEffect(() => {
-    console.log("SHOW")
     window.mathVirtualKeyboard.show();
 
     if (mf && containerRef.current) {
+      console.log("APPEND")
       containerRef.current.appendChild(mf);
       mf.focus();
     }
@@ -88,7 +87,7 @@ const MathField: FC<Props> = ({
     return () => {
       window.mathVirtualKeyboard.hide();
     };
-  }, [mf]);
+  }, [mf, containerRef]);
 
   mf.value = latex || '';
 
