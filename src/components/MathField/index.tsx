@@ -18,6 +18,8 @@ const MathField: FC<Props> = ({
   const mf = useMemo(() => {
     const mathField = new MathfieldElement();
     mathField.setAttribute('placeholder', placeholder);
+    mathField.virtualKeyboardTargetOrigin = "*"
+    mathField.mathVirtualKeyboardPolicy = 'manual'
 
     return mathField;
   }, [placeholder]);
