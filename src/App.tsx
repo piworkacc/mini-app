@@ -10,7 +10,7 @@ function App() {
   const [latex, setValue] = useState<string | null>(null);
 
   const handleOnClick = useCallback(() => {
-    WebApp.sendData(modifyMathOutput(latex ?? ""));
+    WebApp.sendData(JSON.stringify(modifyMathOutput(latex ?? "")));
     WebApp.close();
   }, [latex]);
 
