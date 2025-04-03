@@ -10,6 +10,10 @@ math-field::part(menu-toggle) {
   display: none;
 }
 
+.MLK__toolbar {
+  display: none !important;
+}
+
 .withoutKeyboard math-field::part(virtual-keyboard-toggle) {
   display: none;
 }

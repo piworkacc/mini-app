@@ -1,6 +1,21 @@
 import { VirtualKeyboardKeycap } from 'mathlive';
 
+const navigationRows: (Partial<VirtualKeyboardKeycap> | string)[][] = [
+  [
+    { label: '123', command: 'switchKeyboardLayer("num")' },
+    { label: 'f(x)', command: 'switchKeyboardLayer("func")' },
+    { label: 'sin', command: 'switchKeyboardLayer("trigono")' },
+    { label: 'abc', command: 'switchKeyboardLayer("aplphabet")' },
+    { label: '[separator]', width: 1 },
+    '[left]',
+    '[right]',
+    '[backspace]',
+  ],
+  ['[hr]'],
+];
+
 export const numericLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
+  ...navigationRows,
   [
     { label: '(', latex: '(', variants: ['(', '[', '\\{', ')', ']', '\\}'] },
     { label: '>', latex: '>', variants: ['>', '\\ge', '<', '\\le'] },
@@ -18,38 +33,43 @@ export const numericLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
     { latex: '\\times' },
   ],
   [
-    {latex: "{#@}^2", variants: ["{#?}^2", "{#@}^3", "{#@}^{#?}"]},
-    {latex: "x", variants: ["x", "y", "z"]},
+    { latex: '{#@}^2', variants: ['{#?}^2', '{#@}^3', '{#@}^{#?}'] },
+    { latex: 'x', variants: ['x', 'y', 'z'] },
     { label: '1', latex: '1', variants: ['\\frac{1}{{#?}}', '{#?}^{-1}'] },
     { label: '2', latex: '2', variants: ['\\frac{1}{2}', '{#?}^2', '\\sqrt{2}'] },
     { label: '3', latex: '3', variants: ['\\frac{1}{3}', '{#?}^3', '\\sqrt{3}'] },
     { label: '-', latex: '-', variants: ['\\pm'] },
   ],
   [
-    {latex: "\\pi", variants: ['\\frac{\\pi}{2}', '\\frac{\\pi}{3}'] },
-    {latex: "\\%" }, '[0]', '[,]',
-    {label: "=", latex: "=", variants: ["\\ne"]},
-    {latex: "+"},
-  ]
+    { latex: '\\pi', variants: ['\\frac{\\pi}{2}', '\\frac{\\pi}{3}'] },
+    { latex: '\\%' },
+    '[0]',
+    '[,]',
+    { label: '=', latex: '=', variants: ['\\ne'] },
+    { latex: '+' },
+  ],
 ];
 
 export const trigonometryLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
-  ["{#?}\\text{rad}", "\\sin(#?)", "\\cos(#?)", "\\tan(#?)", "\\operatorname{\\ctg}(#?)"],
-  ["\\ang{#?}", "\\arcsin(#?)", "\\arccos(#?)", "\\arctan(#?)", "\\operatorname{\\arcctg}(#?)"],
-  ["\\ang{#?}{#?}'", "\\sec(#?)", "\\csc(#?)", "\\arcsec(#?)", "\\arccsc(#?)"],
-  ["\\ang{#?}{#?}'{#?}''", "\\sinh", "\\cosh", "\\tanh", "\\coth"],
+  ...navigationRows,
+  ['{#?}\\mathrm{rad}', '\\sin(#?)', '\\cos(#?)', '\\tan(#?)', '\\operatorname{\\ctg}(#?)'],
+  ['\\ang{#?}', '\\arcsin(#?)', '\\arccos(#?)', '\\arctan(#?)', '\\operatorname{\\arcctg}(#?)'],
+  ["\\ang{#?}{#?}'", '\\sec(#?)', '\\csc(#?)', '\\arcsec(#?)', '\\arccsc(#?)'],
+  ["\\ang{#?}{#?}'{#?}''", '\\sinh', '\\cosh', '\\tanh', '\\coth'],
 ];
 
 export const functionsLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
-  [{latex: "\\left\\lvert {#?} \\right\\rvert"}, "f(x)", "\\log_{10}{#?}"],
-  ["{#@}_{#?}", "f(x,y)", "\\log_{2}{#?}"],
-  ["e", "{#?}({#?})", "\\log_{#?}{#?}"],
-  ["\\exp", "{#?}({#?},{#?})", "\\ln{#?}"],
+  ...navigationRows,
+  [{ latex: '\\left\\lvert {#?} \\right\\rvert' }, 'f(x)', '\\log_{10}{#?}'],
+  ['{#@}_{#?}', 'f(x,y)', '\\log_{2}{#?}'],
+  ['e', '{#?}({#?})', '\\log_{#?}{#?}'],
+  ['\\exp', '{#?}({#?},{#?})', '\\ln{#?}'],
 ];
 
 export const alphabeticLayout: (Partial<VirtualKeyboardKeycap> | string)[][] = [
-  ["a", "b", "c", "d", "e", "f", "g", "h"],
-  ["i", "j", "k", "l", "m", "n", "o", "p"],
-  ["q", "r", "s", "t", "u", "v", "w", "x"],
-  ["y", "z", "\\alpha", "\\beta", "\\theta", "\\rho", "\\phi"],
+  ...navigationRows,
+  ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
+  ['i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'],
+  ['q', 'r', 's', 't', 'u', 'v', 'w', 'x'],
+  ['y', 'z', '\\alpha', '\\beta', '\\theta', '\\rho', '\\phi'],
 ];

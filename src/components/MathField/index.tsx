@@ -16,7 +16,10 @@ const MathField: FC<Props> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const mf = useMemo(() => {
-    const mathField = new MathfieldElement({virtualKeyboardTargetOrigin: "*", mathVirtualKeyboardPolicy: "sandboxed"});
+    const mathField = new MathfieldElement({
+      virtualKeyboardTargetOrigin: '*',
+      mathVirtualKeyboardPolicy: 'sandboxed',
+    });
     mathField.setAttribute('placeholder', placeholder);
 
     return mathField;
@@ -42,12 +45,20 @@ const MathField: FC<Props> = ({
 
   const onMountCallback = useCallback(() => {
     window.mathVirtualKeyboard.layouts = [
-      { rows: numericLayout, label: '123', labelClass: 'MLK__tex-math' },
-      { rows: functionsLayout, label: 'f(x)', labelClass: 'MLK__tex-math' },
-      { rows: trigonometryLayout, label: 'sin', labelClass: 'MLK__tex-math' },
-      { rows: alphabeticLayout, label: 'abc', labelClass: 'MLK__tex-math' },
+      {
+        layers: [
+          { rows: numericLayout, id: 'num' },
+          { rows: functionsLayout, id: 'func' },
+          { rows: trigonometryLayout, id: 'trigono' },
+          { rows: alphabeticLayout, id: 'aplphabet' },
+        ],
+      },
     ];
     mf.menuItems = [];
+    mf.macros = {
+      ...mf.macros,
+      rad: '\\mathrm{rad}',
+    };
   }, [mf]);
 
   useEffect(() => {
@@ -78,6 +89,7 @@ const MathField: FC<Props> = ({
   mf.style.setProperty('width', '100%');
 
   useEffect(() => {
+    window.mathVirtualKeyboard.editToolbar = 'none';
     window.mathVirtualKeyboard.show();
 
     if (mf && containerRef.current) {
