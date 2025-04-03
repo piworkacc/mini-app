@@ -24,7 +24,7 @@ function App() {
         latex={latex}
         autoOpenKeyboard
         hasKeyboardButton={false}
-        placeholder="\text{Формула...}"
+        placeholder="\text{Введи формулу...}"
         onInput={setValue}
       />
       <MainButton text="Отправить" onClick={handleOnClick} disabled={!latex} />

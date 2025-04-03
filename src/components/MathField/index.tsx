@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
 import { MathfieldElement } from 'mathlive';
 
-import { mobileLayout } from './layouts';
+import { alphabeticLayout, numericLayout, trigonometryLayout } from './layouts';
 import { ControlledProps } from './interfaces';
 
 type Props = ControlledProps;
@@ -34,8 +34,17 @@ const MathField: FC<Props> = ({
     window.mathVirtualKeyboard.show();
   }, []);
 
+  const onBlurCallback = useCallback(() => {
+    requestAnimationFrame(() => mf.focus());
+  }, [mf]);
+
   const onMountCallback = useCallback(() => {
-    window.mathVirtualKeyboard.layouts = [{ rows: mobileLayout }];
+    window.mathVirtualKeyboard.layouts = [
+      { rows: numericLayout, label: '123', labelClass: 'MLK__tex-math' },
+      // { rows: functionsLayout, label: 'f(x)', labelClass: 'MLK__tex-math' },
+      { rows: trigonometryLayout, label: 'sin', labelClass: 'MLK__tex-math' },
+      { rows: alphabeticLayout, label: 'abc', labelClass: 'MLK__tex-math' },
+    ];
     mf.menuItems = [];
   }, [mf]);
 
@@ -52,10 +61,16 @@ const MathField: FC<Props> = ({
   }, [mf, onMountCallback]);
 
   useEffect(() => {
-    if (autoOpenKeyboard) mf.addEventListener('focusin', onFocusCallback);
+    if (autoOpenKeyboard) {
+      mf.addEventListener('focusin', onFocusCallback);
+      mf.addEventListener('focusout', onBlurCallback);
+    }
 
-    return () => mf.removeEventListener('focusout', onFocusCallback);
-  }, [autoOpenKeyboard, mf, onFocusCallback]);
+    return () => {
+      mf.removeEventListener('focusout', onFocusCallback);
+      mf.removeEventListener('focusout', onBlurCallback);
+    };
+  }, [autoOpenKeyboard, mf, onBlurCallback, onFocusCallback]);
 
   mf.style.setProperty('min-width', '100%');
   mf.style.setProperty('width', '100%');
