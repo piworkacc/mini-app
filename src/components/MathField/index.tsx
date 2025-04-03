@@ -16,7 +16,7 @@ const MathField: FC<Props> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const mf = useMemo(() => {
-    const mathField = new MathfieldElement({virtualKeyboardTargetOrigin: "*", mathVirtualKeyboardPolicy: "manual"});
+    const mathField = new MathfieldElement({virtualKeyboardTargetOrigin: "*", mathVirtualKeyboardPolicy: "sandboxed"});
     mathField.setAttribute('placeholder', placeholder);
 
     return mathField;
@@ -78,7 +78,6 @@ const MathField: FC<Props> = ({
   mf.style.setProperty('width', '100%');
 
   useEffect(() => {
-    window.mathVirtualKeyboard.targetOrigin="*";
     window.mathVirtualKeyboard.show();
 
     if (mf && containerRef.current) {
